@@ -8,9 +8,11 @@ public class RestApiMethods
     public static final String ipadress = "192.168.164.166";
     public static final String RestApi = "PM01";
     public static final String PostRouting = "CreatePerson.php";
+    public static final String GetRouting = "ListPerson.php";
 
     // Endpoint
     public static final String  EndpointPost = "http://"  + ipadress + separador + RestApi + separador + PostRouting;
+    public static final String  EndpointGet = "http://"  + ipadress + separador + RestApi + separador + GetRouting;
 
 
 
