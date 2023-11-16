@@ -11,6 +11,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.pm01restapi.Config.Personas;
 import com.example.pm01restapi.Config.RestApiMethods;
@@ -40,19 +41,17 @@ public class ActivityList extends AppCompatActivity {
     {
         requestQueue = Volley.newRequestQueue(this);
 
-        JsonObjectRequest request  = new JsonObjectRequest(Request.Method.GET,
-                RestApiMethods.EndpointGet, null, new Response.Listener<JSONObject>() {
+        StringRequest request  = new StringRequest(Request.Method.GET,
+                RestApiMethods.EndpointGet, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response)
+            public void onResponse(String response)
             {
                 try
                 {
-
-
                     String mensaje = response.toString();
                     //Toast.makeText(getApplicationContext(), mensaje,Toast.LENGTH_LONG).show();
 
-                    JSONArray arreglo = new JSONArray(response.toString());
+                    JSONArray arreglo = new JSONArray(response);
 
                     for(int i=0; i < arreglo.length(); i++)
                     {
@@ -70,7 +69,7 @@ public class ActivityList extends AppCompatActivity {
                 }
                 catch (Exception ex)
                 {
-                    ex.printStackTrace();
+                    Toast.makeText(getApplicationContext(), ex.toString(),Toast.LENGTH_LONG).show();
                 }
             }
         }, new Response.ErrorListener() {
